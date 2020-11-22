@@ -22,7 +22,7 @@ public:
     ResourceManager(ResourceManager&& obj) {
         cout << "move constructor";
         this->res = obj.getResource();
-        obj.res->nullprt;
+        obj.res   = (std::nullptr_t) nullptr;
     }
     ResourceManager& operator=(ResourceManager&obj) {
         cout << "copy assignment operator";
