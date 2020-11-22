@@ -27,11 +27,13 @@ public:
     ResourceManager& operator=(ResourceManager&obj) {
         cout << "copy assignment operator";
         this->res = new Resource{*obj.getResource()};
+        delete res;
         return *this;
     }
     ResourceManager& operator=(ResourceManager&&obj) {
         cout << "move assignment operator";
         this->res = obj.res;
+        obj.res   = (std::nullptr_t) nullptr;
         return *this;
     }
     ~ResourceManager() {
