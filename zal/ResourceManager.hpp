@@ -17,16 +17,16 @@ public:
     }
     ResourceManager(ResourceManager&obj) {
         cout << "copy constructor";
+        this->res = new Resource{*obj.getResource()};
+    }
+    ResourceManager(ResourceManager&& obj) {
+        cout << "move constructor";
         this->res = obj.res;
     }
     ResourceManager& operator=(const ResourceManager&obj) {
         cout << "copy assignment operator";
-        this->res = obj.res;
+        this->res = new Resource{*obj.cgetResource()};
         return *this;
-    }
-    ResourceManager(ResourceManager&&obj) {
-        cout << "move constructor";
-        this->res = obj.res;
     }
     ResourceManager& operator=(const ResourceManager&&obj) {
         cout << "move assignment operator";
@@ -37,7 +37,13 @@ public:
         cout << "denstructor";
         delete res;
     }
-    double get()
-    { return res->get();
+    double get() {
+        return res->get();
+    }
+    Resource* getResource() {
+        return res;
+    }
+    Resource* cgetResource() const {
+        return res;
     }
 };
