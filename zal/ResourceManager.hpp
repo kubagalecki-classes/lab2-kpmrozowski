@@ -1,12 +1,15 @@
 #pragma once
 
-#include "./include/Resource.hpp"
+#include "Resource.hpp"
 #include <iostream>
 using namespace std;
 
 class ResourceManager
 {
+    // Twoja implementacja tutaj
+    int we;
     Resource* res;
+
 public:
     ResourceManager() {
         cout << "default constructor\n";
@@ -14,16 +17,20 @@ public:
     }
     ResourceManager(ResourceManager&obj) {
         cout << "copy constructor";
+        this->res = obj.res;
     }
-    ResourceManager& operator=(const ResourceManager&) {
+    ResourceManager& operator=(const ResourceManager&obj) {
         cout << "copy assignment operator";
+        this->res = obj.res;
         return *this;
     }
-    ResourceManager(ResourceManager&&) {
+    ResourceManager(ResourceManager&&obj) {
         cout << "move constructor";
+        this->res = obj.res;
     }
-    ResourceManager& operator=(const ResourceManager&&) {
+    ResourceManager& operator=(const ResourceManager&&obj) {
         cout << "move assignment operator";
+        this->res = obj.res;
         return *this;
     }
     ~ResourceManager() {
